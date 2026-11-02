@@ -1,15 +1,16 @@
 ---
 name: validate-skill
 description: Validate that a skill conforms to the ai-agent-skills repository standards
-version: 1.1.0
-category: meta
-tags: [meta, infrastructure, validation, quality-control]
-author: waldronlab
+metadata:
+  version: 1.2.1
+  category: meta
+  author: bioconductor
+  tags: meta, infrastructure, validation, quality-control
 ---
 
 # validate-skill
 
-Validate that a skill conforms to waldronlab standards. Uses generic validators (markdownlint, yamllint) for basic checks, then adds waldronlab-specific validation for platform-agnostic compliance and repository conventions.
+Validate that a skill conforms to bioconductor standards. Uses generic validators (markdownlint, yamllint) for basic checks, then adds bioconductor-specific validation for platform-agnostic compliance and repository conventions.
 
 ## Usage
 
@@ -22,12 +23,20 @@ Invoke this skill to validate a skill file:
 - Target skill file exists at `skills/{skill-name}/SKILL.md`
 - Optional: `markdownlint` and `yamllint` installed
 
+> **Note — CI/CD integration**: The deterministic subset of these checks
+> (frontmatter completeness, directory-name matching, name uniqueness,
+> SKILLS.md sync, broken links, version bump) runs automatically via GitHub
+> Actions on every PR that modifies a `SKILL.md` file. Use this skill for
+> **interactive local validation** before opening a PR and for the full
+> subjective review (agent neutrality, verbosity, SSOT compliance) that the
+> static script cannot evaluate.
+
 ## Process
 
 1. **Locate Target Skill**: Determine the skill to validate from the user's prompt or current directory.
 2. **Run Generic Validation (Optional)**: If available, run `markdownlint` on the file, and validate the YAML frontmatter syntax (e.g., by extracting the frontmatter and running `yamllint -d relaxed` on it).
 3. **Validate Repository Standards**: Check the file against the requirements in [AGENTS.md](../../AGENTS.md) and [SKILL_STANDARD.md](../../SKILL_STANDARD.md).
-   - Ensure the YAML frontmatter contains required fields and no prohibited fields (`platforms`, `triggers`).
+   - Ensure the YAML frontmatter contains required fields, no prohibited fields (`platforms`, `triggers`), and no top-level keys outside those AGENTS.md § Minimal Required Fields allows (repository fields such as `version` belong under `metadata:`).
    - Check that the structure matches the standard format.
    - Verify agent neutrality (no tool references or platform commands in instructions).
    - Confirm it describes a workflow, not just code snippets.
@@ -48,7 +57,7 @@ Generate a validation report in markdown format:
 **markdownlint**: ✅ PASS | ⚠️ [N] warnings
 **YAML frontmatter**: ✅ PASS | ❌ FAIL
 
-## Waldronlab-Specific Validation
+## Bioconductor-Specific Validation
 ### CRITICAL Issues (Must Fix)
 ❌ **[Issue title]** ([location])
    - Issue: [What violates standards]

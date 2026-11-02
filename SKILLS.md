@@ -1,34 +1,53 @@
+---
+layout: default
+title: Skills Index
+nav_order: 2
+---
 # Available Skills
+{: .no_toc}
 
-This is the canonical index of all available AI agent skills in the waldronlab/ai-agent-skills repository. Use this to discover and understand what skills are available and when to use them.
+<details markdown="1">
+<summary><b>📖 Table of Contents (click to expand)</b></summary>
 
-> **Note**: All skills are located at `skills/{skill-name}/SKILL.md`.
+* TOC
+{:toc}
 
-## Quick Start
+</details>
 
-1. **Browse by category** below to find a skill that matches your need
-2. **Read the skill description** to understand when to use it
-3. **Invoke naturally**: Describe what you need to your AI agent
-   - Example: "Help me create a new skill"
+---
 
-**Platform shortcuts**: Optional shortcuts (like `/skill-name` or `@workspace` patterns) are documented in [instructions/](instructions/) for each platform.
+This is the canonical index of all available AI agent skills in the bioconductor/ai-agent-skills repository. Use this to discover and understand what skills are available and when to use them.
 
-## Setup & Discovery
-
-**First time?**
-- See [instructions/claude.md](instructions/claude.md) (Claude Code)
-- See [instructions/copilot.md](instructions/copilot.md) (GitHub Copilot)
-
-**Understanding the design:**
-- See [AGENTS.md](AGENTS.md) for how skill discovery and invocation work
+> **Note**: For instructions on how to use these skills, see the [Skills Usage Guide](USAGE.md). All skills are located at `skills/{skill-name}/SKILL.md`, and Claude users can install them all as two plugins (see [Claude Setup](instructions/claude.md#plugin-install-recommended)).
 
 ## Meta Skills
 
 Infrastructure and workflow skills for working with this repository itself.
 
+### adr-author
+
+**Purpose**: Write a new Architecture Decision Record following the established Nygard format and conventions.
+
+**Location**: `skills/adr-author/SKILL.md`
+
+**When to use**:
+- Documenting a non-trivial, behavior-affecting decision
+- When you need to create an ADR
+
+**Invocation**:
+- "Write an ADR for..."
+- "Record the decision to..."
+- "Document the design rationale for..."
+
+**Output**: A new ADR file in the target repository's `docs/adr/` directory
+
+---
+
 ### create-skill
 
 **Purpose**: Help create a new AI agent skill through collaborative Q&A
+
+**Location**: `skills/create-skill/SKILL.md`
 
 **When to use**:
 - Creating a new skill from scratch or from a manual workflow
@@ -39,20 +58,22 @@ Infrastructure and workflow skills for working with this repository itself.
 
 **Output**: A complete skill with validated file and updated SKILLS.md, ready for testing and committing
 
-**Related skills**: validate-skill, document-skill, check-waldronlab-skills
+**Related skills**: validate-skill, document-skill, check-bioconductor-skills
 
 ---
 
-### check-waldronlab-skills
+### check-bioconductor-skills
 
-**Purpose**: List and verify installed waldronlab skills
+**Purpose**: List and verify installed bioconductor skills
+
+**Location**: `skills/check-bioconductor-skills/SKILL.md`
 
 **When to use**:
 - Verifying skills are correctly installed or discovering available skills
 
 **Invocation**:
 - "What skills are available?"
-- "List waldronlab skills"
+- "List bioconductor skills"
 
 **Output**: List of available skills and setup status
 
@@ -61,6 +82,8 @@ Infrastructure and workflow skills for working with this repository itself.
 ### validate-skill
 
 **Purpose**: Validate that a skill conforms to the ai-agent-skills repository standards
+
+**Location**: `skills/validate-skill/SKILL.md`
 
 **When to use**:
 - Creating new skills, reviewing PRs, or ensuring standards compliance
@@ -71,13 +94,15 @@ Infrastructure and workflow skills for working with this repository itself.
 
 **Output**: Comprehensive validation report with pass/fail status, categorized issues, and specific fix suggestions
 
-**Related skills**: create-skill, check-waldronlab-skills, document-skill
+**Related skills**: create-skill, check-bioconductor-skills, document-skill
 
 ---
 
 ### document-skill
 
 **Purpose**: Automate documentation updates to SKILLS.md after creating or modifying a skill
+
+**Location**: `skills/document-skill/SKILL.md`
 
 **When to use**:
 - After creating a new skill or modifying an existing skill to update SKILLS.md
@@ -88,17 +113,19 @@ Infrastructure and workflow skills for working with this repository itself.
 
 **Output**: Updated SKILLS.md with the skill entry added to all relevant sections
 
-**Related skills**: create-skill, validate-skill, check-waldronlab-skills
+**Related skills**: create-skill, validate-skill, check-bioconductor-skills
 
 ---
 
 ## R/Bioconductor Package Skills
 
-Skills for analyzing, documenting, and developing R/Bioconductor packages following waldronlab conventions.
+Skills for analyzing, documenting, and developing R/Bioconductor packages following bioconductor conventions.
 
 ### analyze-r-package
 
 **Purpose**: Analyze R/Bioconductor package structure and characteristics
+
+**Location**: `skills/analyze-r-package/SKILL.md`
 
 **When to use**:
 - Understanding a package's architecture, type, or identifying key functions
@@ -114,6 +141,8 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 ### create-package-instructions
 
 **Purpose**: Generate comprehensive .github/instructions files for R/Bioconductor packages
+
+**Location**: `skills/create-package-instructions/SKILL.md`
 
 **When to use**:
 - Creating AI agent instructions for a new R package or standardizing documentation
@@ -132,6 +161,8 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 
 **Purpose**: Update existing .github/instructions files based on recent package changes
 
+**Location**: `skills/update-package-instructions/SKILL.md`
+
 **When to use**:
 - Refreshing package instructions after major architecture or pattern changes
 
@@ -147,16 +178,19 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 
 ### improve-code-coverage
 
-**Purpose**: Analyze R package code coverage using covr, classify testing gaps, and proactively write test cases.
+**Purpose**: Analyze R package code coverage using covr, audit existing tests for tautological assertions, classify testing gaps, and proactively write test cases to improve coverage and result correctness.
+
+**Location**: `skills/improve-code-coverage/SKILL.md`
 
 **When to use**:
-- Evaluating testing rigor, identifying gaps, and proactively writing test cases
+- Evaluating testing rigor, auditing for vacuous or tautological tests, identifying gaps, and proactively writing test cases
 
 **Invocation**:
 - "Check my code coverage and help me write missing tests."
+- "Audit my existing tests for tautological or vacuous test cases."
 - "Improve code coverage, focusing on edge cases and correctness."
 
-**Output**: A chat summary breaking down coverage by test category, and code blocks containing `testthat` cases.
+**Output**: A chat summary breaking down coverage by test category and audit findings, and code blocks containing framework-native test cases.
 
 **Related skills**: analyze-r-package, security-audit-r-package
 
@@ -165,6 +199,8 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 ### security-audit-r-package
 
 **Purpose**: Perform comprehensive security audit of R/Bioconductor packages
+
+**Location**: `skills/security-audit-r-package/SKILL.md`
 
 **When to use**:
 - Auditing packages before CRAN/Bioconductor submission or reviewing for vulnerabilities
@@ -176,6 +212,118 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 **Output**: Security audit report (markdown format) with findings categorized by severity.
 
 **Related skills**: analyze-r-package, validate-skill, create-package-instructions
+
+---
+
+### build-check-bioccheck
+
+**Purpose**: Run and interpret R CMD build, R CMD check, and both BiocCheck entry points against a Bioconductor package, separating real defects from environment gaps and known false positives
+
+**Location**: `skills/build-check-bioccheck/SKILL.md`
+
+**When to use**:
+- Checking whether a package passes the Bioconductor validation gate
+- Interpreting a BiocCheck ERROR, WARNING or NOTE
+- Distinguishing a real package defect from a missing build tool, an account-level setting, or a known false positive
+
+**Invocation**:
+- "Run BiocCheck on this package"
+- "Does this package pass the Bioconductor checks?"
+- "Why is BiocCheck reporting this error?"
+
+**Output**: Per-step results with a pass/blocked verdict, findings classified as defect / environment / account action / false positive
+
+**Related skills**: bioc-pkg-dev, analyze-r-package, improve-code-coverage
+
+---
+
+### bioc-pkg-dev
+
+**Purpose**: Guide an R package or a set of analysis scripts through Bioconductor submission: the pre-submission gate, the Contributions tracker, and post-acceptance maintenance
+
+**Location**: `skills/bioc-pkg-dev/SKILL.md`
+
+**When to use**:
+- Asking whether a package is ready to submit to Bioconductor, or what a reviewer would flag
+- Preparing a package on GitHub for the Bioconductor Contributions tracker
+- Turning analysis scripts into a submittable package, or moving a package from CRAN to Bioconductor
+- Working on `biocViews`, `BiocCheck`, version numbering, vignettes, or large-data placement
+- Maintaining an accepted package on `git.bioconductor.org`
+
+**Invocation**:
+- "Is this package ready to submit to Bioconductor?"
+- "Get this package ready for Bioconductor"
+- "Turn these analysis scripts into a Bioconductor package"
+- "How do I push to git.bioconductor.org after acceptance?"
+
+**Output**: A two-tier gap report separating hard blockers from likely reviewer requests, ending in a submittable-or-not verdict; or a targeted answer citing the canonical guide chapter
+
+**Related skills**: analyze-r-package, security-audit-r-package, improve-code-coverage, update-r-news, bioc-pkg-review
+
+---
+
+### bioc-pkg-finder
+
+**Purpose**: Find the R / Bioconductor packages best suited to a task or workflow
+
+**Location**: `skills/bioc-pkg-finder/SKILL.md`
+
+**When to use**:
+- When the user asks "what package should I use for X" or "is there a Bioconductor package that does Y"
+- Assembling an analysis workflow and needing to pick tools
+
+**Invocation**:
+- "What package should I use for differential expression?"
+- "Is there a Bioconductor package that does single-cell clustering?"
+- "Which package is standard for variant annotation?"
+
+**Output**: Recommended package(s) with biocViews term or CRAN Task View source, install path, and the key gotcha for the recommended tool
+
+**Related skills**: analyze-r-package, create-package-instructions
+
+---
+
+### bioc-pkg-review
+
+**Purpose**: Review your own R package against the rubric and checklist Bioconductor's agent-assisted reviewer uses, before you submit, so the human review has less to say
+
+**Location**: `skills/bioc-pkg-review/SKILL.md`
+
+**When to use**:
+- Before opening a BiocContributions tracker issue, after the gate (`build-check-bioccheck`) passes
+- When a reviewer's feedback arrives and you want to check the rest of the package the same way
+- When you want the Package Review Checklist filled for a package
+
+**Invocation**:
+- "Review my package for Bioconductor submission"
+- "What will the Bioconductor reviewer say about this package?"
+- "Fill the Package Review Checklist for this package"
+
+**Output**: Numbered findings with rubric id, severity, evidence and a suggested fix; what the human reviewer will weigh (overlap, provenance); the Package Review Checklist filled Y / N / N/A / ?; Blockers, likely reviewer requests, verdict
+
+**Related skills**: bioc-pkg-dev, build-check-bioccheck, bioc-pkg-finder
+
+---
+
+### migrate-datapkg-to-zenodo
+
+**Purpose**: Convert a legacy Bioconductor experiment data package that ships .rda files in data/ to on-demand download from Zenodo with BiocFileCache caching, keeping data() backward compatible and R CMD check offline
+
+**Location**: `skills/migrate-datapkg-to-zenodo/SKILL.md`
+
+**When to use**:
+- A data package's source tarball is bloated by serialized datasets in `data/`
+- Moving package data to external, citable hosting without an ExperimentHub conversion (Zenodo by default; another host, such as OSF, figshare, or an S3 bucket, if the user specifies one)
+- Replicating the curatedOvarianData / curatedCRCData / curatedBladderData Zenodo refactor on another package
+
+**Invocation**:
+- "Convert this data package to Zenodo and BiocFileCache"
+- "Move the datasets in this package out of data/ and host them on Zenodo"
+- "Refactor this legacy experiment data package so it stops shipping .rda files"
+
+**Output**: A pull request with an exported getter, Zenodo manifest, offline test fixtures, data() stubs, regeneration and integrity-verification scripts, tests, and updated docs, plus a published and verified Zenodo record.
+
+**Related skills**: analyze-r-package, build-check-bioccheck, update-r-news
 
 ---
 
@@ -194,7 +342,7 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 **What happens**:
 - Detects the NEWS file format in use (`NEWS.md`, `NEWS`, or `NEWS.Rd`)
 - Derives the upcoming even-numbered release version from the current devel version
-- Finds the last release tag and retrieves all commits since then
+- Finds the most recent Bioconductor devel-version bump commit ("bump x.y.z version to odd y...") and retrieves all commits since then
 - Extracts PR titles from merge commits when available
 - Identifies vague commit messages (≤ 3 words or known filler phrases) and inspects their diffs to infer what changed
 - Categorises changes using headings already present in the NEWS file
@@ -206,19 +354,38 @@ Skills for analyzing, documenting, and developing R/Bioconductor packages follow
 
 ---
 
-## Metagenomics Skills
+## Bioconductor How-Tos
 
-*Planned for future release*
+Skills indexing focused, practical how-tos for common Bioconductor data analysis tasks.
 
-Skills for standard metagenomics data processing and analysis workflows.
+### bioc-howto
+
+**Purpose**: A consolidated index of Bioconductor how-to skills covering genomics, sequencing, and omics data analysis tasks
+
+**Location**: `skills/bioc-howto/SKILL.md`
+
+**When to use**:
+- Looking for step-by-step instructions for common Bioconductor tasks (e.g., loading BAM files, manipulating GRanges, extracting sequences)
+- Needing examples of standard Bioconductor workflows
+
+**Invocation**:
+- "How do I do [task] in Bioconductor?"
+- "Can you show me a Bioconductor how-to for [task]?"
+- "Check the bioc-howto index for [task]"
+
+**Output**: Links to and instructions from the relevant how-to markdown file.
 
 ---
 
-## Statistical Methods Skills
+## Protocols
 
-*Planned for future release*
-
-Skills for statistical analysis patterns in microbiome and multi-omics research.
+Protocol execution lives in
+[`waldronlab/agent-protocol-standard`](https://github.com/waldronlab/agent-protocol-standard), not
+here. Its [`protocol-runner`](https://github.com/waldronlab/agent-protocol-standard/tree/main/skills/protocol-runner)
+skill discovers protocols across the federation, ranks them by trust and status, and emits a Method
+Provenance block before executing anything — semantics that belong to the protocol standard rather
+than to Bioconductor, so the skill versions with it. See the amendment to
+[ADR 0002](docs/adr/0002-federated-protocol-repositories.md).
 
 ---
 
@@ -228,112 +395,44 @@ Skills for statistical analysis patterns in microbiome and multi-omics research.
 
 | Category | Skills | Purpose |
 |----------|--------|---------|
-| **meta** | create-skill, check-waldronlab-skills, document-skill, validate-skill | Repository and workflow infrastructure |
-| **r-packages** | analyze-r-package, create-package-instructions, improve-code-coverage, security-audit-r-package, update-package-instructions, update-r-news | R/Bioconductor package development |
-| **metagenomics** | (Planned) | Metagenomics data workflows |
-| **statistical-methods** | (Planned) | Statistical analysis patterns |
+| **meta** | adr-author, check-bioconductor-skills, create-skill, document-skill, validate-skill | Repository and workflow infrastructure |
+| **r-packages** | analyze-r-package, bioc-pkg-dev, bioc-pkg-finder, bioc-pkg-review, build-check-bioccheck, create-package-instructions, improve-code-coverage, migrate-datapkg-to-zenodo, security-audit-r-package, update-package-instructions, update-r-news | R/Bioconductor package development |
+| **bioconductor-how-tos** | bioc-howto | Bioconductor data analysis practical guides |
 
 ### By Tag
 
 | Tag | Skills | Use Case |
 |-----|--------|----------|
-| **infrastructure** | create-skill, check-waldronlab-skills, document-skill, validate-skill | Repository and workflow tasks |
+| **infrastructure** | create-skill, check-bioconductor-skills, document-skill, validate-skill | Repository and workflow tasks |
 | **testing** | improve-code-coverage | Software testing and coverage |
-| **validation** | security-audit-r-package, validate-skill | Quality control and standards compliance |
-| **quality-control** | security-audit-r-package, validate-skill | Ensuring skill quality |
-| **documentation** | create-package-instructions, document-skill, update-package-instructions, update-r-news | Generating and maintaining docs |
+| **validation** | build-check-bioccheck, security-audit-r-package, validate-skill | Quality control and standards compliance |
+| **quality-control** | build-check-bioccheck, security-audit-r-package, validate-skill | Ensuring skill quality |
+| **documentation** | adr-author, create-package-instructions, document-skill, update-package-instructions, update-r-news | Generating and maintaining docs |
+| **adr** | adr-author | Architecture Decision Records |
+| **architecture** | adr-author | Architectural decisions |
+| **decision** | adr-author | Documenting decisions |
 | **automation** | document-skill, update-r-news | Automating repetitive documentation tasks |
-| **analysis** | analyze-r-package | Understanding code and architecture |
+| **analysis** | analyze-r-package, bioc-pkg-finder | Understanding code and architecture |
 | **security** | security-audit-r-package | Security audits and vulnerability detection |
+| **data-hosting** | migrate-datapkg-to-zenodo | Hosting package data externally (Zenodo, BiocFileCache) |
 | **audit** | security-audit-r-package | Comprehensive code auditing |
-| **bioconductor** | analyze-r-package, create-package-instructions, improve-code-coverage, security-audit-r-package, update-package-instructions, update-r-news | Bioconductor-specific workflows |
+| **bioconductor** | analyze-r-package, bioc-pkg-dev, bioc-pkg-finder, bioc-pkg-review, build-check-bioccheck, create-package-instructions, improve-code-coverage, security-audit-r-package, update-package-instructions, update-r-news | Bioconductor-specific workflows |
+| **submission** | bioc-pkg-dev, bioc-pkg-review, build-check-bioccheck | Preparing and submitting a package to Bioconductor |
+| **bioccheck** | bioc-pkg-dev, build-check-bioccheck | The BiocCheck pre-submission gate |
+| **biocviews** | bioc-pkg-dev | biocViews terms and package classification |
+| **peer-review** | bioc-pkg-dev, bioc-pkg-review | Bioconductor peer review expectations |
+| **checklist** | bioc-pkg-review | The Package Review Checklist, filled from a self-review |
+| **self-review** | bioc-pkg-review | Reviewing your own package with the reviewer's rubric |
 | **code-coverage** | improve-code-coverage | Code coverage analysis |
 | **covr** | improve-code-coverage | Tools wrapping the covr package |
 | **data-access** | analyze-r-package (detects), create-package-instructions | Working with remote data |
 | **git** | update-r-news | Git-based workflows |
 | **changelog** | update-r-news | Changelog and release note generation |
 | **news** | update-r-news | R package NEWS file management |
+| **data-analysis** | bioc-howto | Practical guides for analyzing omics data |
 
 ---
 
-## Finding Skills by Use Case
-
-### "I want to work on an R package..."
-Use `analyze-r-package` to understand it, `create-package-instructions` to generate AI docs, `improve-code-coverage` or `security-audit-r-package` for quality control, and `update-r-news` for release notes.
-
-### "I want to create a new skill..."
-Start with `create-skill` for guided help, then `validate-skill` and `document-skill`.
-
-### "I want to verify my setup..."
-Run `check-waldronlab-skills` or check the `instructions/` directory.
-
-### "I want to analyze a workflow and automate it..."
-Use `create-skill`.
-
-### "I want to ensure my skill meets standards..."
-Use `validate-skill` iteratively until it passes.
-
----
-
-## How Skills Are Discovered and Invoked
-
-### For Users
-
-1. **Browse this file** to understand what's available
-2. **Describe your need** to your AI agent in natural language
-3. **Agent handles the rest**: Matches need, reads skill file, executes process, and outputs result
-
-### For AI Agents
-
-1. **Read SKILLS.md** as the primary discovery mechanism
-2. **Match user intent** to skill descriptions
-3. **Locate and read** the skill file at `skills/{skill-name}/SKILL.md`
-4. **Execute** using platform tools and deliver output
-
-See [AGENTS.md](AGENTS.md) for the complete agent behavior standard.
-
----
-
-## Contributing New Skills
-
-Want to add a new skill?
-
-1. **Brainstorm**: Use `create-skill`
-2. **Create**: Follow guidance to create the skill file
-3. **Validate**: Run `validate-skill`
-4. **Document**: Use `document-skill` to update this file
-5. **Test**: Verify it works on your platform
-6. **Submit**: Create a PR for review
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
----
-
-## Platform-Specific Information
-
-### Claude Code
-See [instructions/claude.md](instructions/claude.md) for setup and `/skill-name` shortcuts.
-
-### GitHub Copilot
-See [instructions/copilot.md](instructions/copilot.md) for setup and `@workspace` shortcuts.
-
-### Other Agents
-See [instructions/](instructions/) for available adapters.
-
----
-
-## Questions?
-
-- **How does skill invocation work?** → See [AGENTS.md](AGENTS.md)
-- **How do I create a new skill?** → Use `create-skill` or see [CONTRIBUTING.md](CONTRIBUTING.md)
-- **Where are the actual skill files?** → `skills/{skill-name}/SKILL.md`
-- **Can I use skills on multiple platforms?** → Yes! Skills are platform-agnostic
-- **How do I verify my setup?** → Use `check-waldronlab-skills` or see instructions/{agent}.md
-- **I found an issue with a skill** → File an issue at https://github.com/waldronlab/ai-agent-skills/issues
-- **I want to suggest a new skill** → Open a discussion at https://github.com/waldronlab/ai-agent-skills/discussions
-
----
-
-**Last Updated**: 2026-06-13
-**Version**: 2.0.0
-**Maintained by**: waldronlab
+**Last Updated**: 2026-10-29
+**Version**: 2.2.0
+**Maintained by**: bioconductor

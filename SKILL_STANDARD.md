@@ -1,5 +1,9 @@
+---
+layout: default
+title: Skill Standards
+nav_order: 5
+---
 # Skill Format Standard (Quick Reference)
-
 Quick reference for creating skills with validation checklist, version management, and working examples.
 
 **Authoritative specification**: [AGENTS.md § Skill File Format](AGENTS.md#skill-file-format)
@@ -27,7 +31,7 @@ Skills use semantic versioning (MAJOR.MINOR.PATCH):
 
 ### When Updating Skills
 
-1. Increment version in YAML frontmatter
+1. Increment `metadata.version` in YAML frontmatter
 2. If description changes, run `document-skill` to update SKILLS.md
 3. Document changes in commit message
 4. Consider updating CHANGELOG.md for significant changes
@@ -45,6 +49,8 @@ Use this checklist when creating or updating skills (or run `validate-skill` to 
 
 ### Required Elements
 - [ ] Frontmatter conforms to [AGENTS.md § Minimal Required Fields](AGENTS.md#minimal-required-fields)
+- [ ] `metadata.author` is present in frontmatter (see AGENTS.md § Minimal Required Fields)
+- [ ] No top-level keys other than those AGENTS.md § Minimal Required Fields allows (Claude skill upload rejects them)
 - [ ] No prohibited fields present (see [AGENTS.md § What NOT to Include](AGENTS.md#what-not-to-include))
 - [ ] `name` is unique and kebab-case
 - [ ] Core logic is platform-agnostic (describes WHAT, not HOW)
@@ -79,9 +85,11 @@ Here's a well-formed skill demonstrating the structural elements:
 ---
 name: example-skill
 description: Brief one-line description of the skill's purpose
-version: 1.0.0
-category: meta
-tags: [example, demo]
+metadata:
+  version: 1.0.0
+  category: meta
+  author: bioconductor
+  tags: example, demo
 ---
 
 # example-skill
@@ -132,10 +140,10 @@ Describe the expected result structure.
 - **Where are skills stored?** → `skills/{skill-name}/SKILL.md` (flat structure)
 - **How do platform shortcuts work?** → See `instructions/` for your specific platform
 - **How do I validate my skill?** → Run `validate-skill` or use the checklist above
-- **I found an issue** → File at https://github.com/waldronlab/ai-agent-skills/issues
+- **I found an issue** → File at https://github.com/bioconductor/ai-agent-skills/issues
 
 ---
 
-**Version**: 2.1.0
-**Last Updated**: 2026-06-13
-**Authors**: waldronlab
+**Version**: 3.1.0
+**Last Updated**: 2026-10-29
+**Authors**: bioconductor

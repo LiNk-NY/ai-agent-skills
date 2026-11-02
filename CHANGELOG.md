@@ -7,9 +7,81 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned
-- metagenomics analysis skills
-- statistical-methods skills
+### Changed
+- **Skill frontmatter: `version`, `category`, `author` and `tags` move under `metadata:`**
+  (AGENTS.md 2.0.0 → 2.1.0, all skills patch-bumped). Claude's skill upload (claude.ai and the
+  Skills API) accepts only `name`, `description`, `metadata`, `license`, `compatibility` and
+  `allowed-tools` at the top level, so every skill was rejected on upload. `metadata` values must
+  be strings, so `tags` is now comma-separated text. `scripts/validate_skills.py` enforces the new
+  layout and Claude's name/description limits; the citation rule now reads `metadata.version` and
+  `metadata.author`. `instructions/claude.md` documents uploading a skill folder to claude.ai.
+- **Claude plugin marketplace** - New `.claude-plugin/marketplace.json` publishes the skills as two
+  plugins, `bioc-r-packages` (12 skills) and `bioc-skill-authoring` (5 skills), installable in
+  Claude Code and the Claude desktop app from the repository URL (optionally pinned to a branch with
+  `#branch`). Skills are read in place from `skills/`; nothing is copied. `validate_skills.py`
+  checks that every skill is listed in exactly one plugin, and `document-skill` (v1.1.0) adds new
+  skills to the file. `scripts/build_claude_plugins.py` builds one uploadable `.zip` per plugin
+  for the desktop app's Upload plugin dialog. `instructions/claude.md` makes the plugins the
+  recommended install path.
+- **SKILLS.md** (2.1.0 → 2.2.0) - Adds `build-check-bioccheck` to the category and tag tables and
+  gives every entry a `Location` line.
+- **adr-author** (v1.0.0 → v1.1.0) - Adds scoping guidance, corrects the supersession rule, and
+  corrects one point of Nygard attribution.
+  - **New "Scoping an ADR" section.** The skill said when an ADR is warranted but nothing about how
+    many. The test given is supersession granularity: an ADR's value is that it can be pointed at
+    and reversed on its own, so bundling couples the futures of the decisions bundled. Includes the
+    observation that an over-broad draft is usually not N ADRs but two decisions that never
+    warranted a record, plus where those belong instead.
+  - **Supersession corrected.** The skill said never to rewrite an accepted ADR. Nygard says the
+    opposite about the status and the forward reference: "if a decision is reversed, we will keep
+    the old one around, but mark it as superseded", "with a reference to its replacement". Editing
+    the old record to point at its replacement is the mechanism. What must not be rewritten is the
+    Context, Decision, or Consequences.
+  - **Partial correction.** `deprecated` and `superseded` both retire a whole record, and the
+    format offers nothing for "still in force except for one claim" — a case that arises as soon as
+    ADRs start correcting each other in detail. Documents the convention this repository already
+    uses in `docs/adr/0002-federated-protocol-repositories.md`: name the amended part in the Status
+    line, and explain it in a banner under the metadata block.
+  - **Attribution.** `Alternatives considered` was labelled part of the Nygard format. Nygard's
+    elements are Title, Context, Decision, Status, Consequences. The section is kept, now named as
+    the later addition it is.
+
+### Removed
+- **bioc-protocol-runner** - Moved to
+  [`waldronlab/agent-protocol-standard`](https://github.com/waldronlab/agent-protocol-standard) and
+  renamed `protocol-runner`. Its behaviour — trust ranking, protocol status handling, the
+  `PROTOCOLS.yaml` fields it reads, and the Method Provenance block — is defined by
+  `PROTOCOL_STANDARD.md` rather than by Bioconductor, so it now versions with that standard. Anyone
+  who installed it should repoint at `agent-protocol-standard/skills/protocol-runner`. Amends
+  ADR 0002 §1.
+
+### Added
+- **bioc-pkg-dev** (v1.0.0) - Guides an R package or a set of analysis scripts through
+  Bioconductor submission: the pre-submission gate, the Contributions tracker, and post-acceptance
+  maintenance.
+  - Reports gate items in two tiers, separating what upstream states as requirements from what it
+    states as recommendations, so a recommendation is not reported as a blocker.
+  - Ships 21 task-oriented `knowledge/` summaries of the official guide, each linking back to its
+    canonical chapter, loaded per topic rather than on every invocation.
+  - Drives `BiocCheck` and `biocthis` rather than reimplementing validation or templates.
+- SKILLS.md and USAGE.md entries for the new skill.
+
+## [3.0.0] - 2026-07-07
+
+### Added
+- **CI/CD Skills Validation**
+  - Added GitHub Actions workflow `.github/workflows/validate-skills.yml` to run structural validation automatically on PRs.
+  - Added deterministic check script `scripts/validate_skills.py` to enforce required frontmatter fields, name matching, uniqueness, link integrity, and version bumps.
+  - Added `.github/copilot-instructions.md` to guide GitHub Copilot Code Review for inline subjective feedback on PRs.
+- **Bioc-HowTo Integration**
+  - Merged `waldronlab/ai-agent-skills` into the official `bioconductor/ai-agent-skills` repository.
+  - Added `bioc-howto` skill and 11 R-oriented how-to guides (e.g. coverage computation, sequence composition, GRanges manipulation, BAM reading).
+- **GitHub Pages Navigation**
+  - Improved documentation structure and FAQ accessibility on GitHub Pages.
+
+### Changed
+- **validate-skill** (v1.1.0 → v1.2.0) - Updated with CI/CD integration note clarifying the local vs CI/CD division of labor.
+- **antigravity** adapter (formerly gemini) - Updated setup instructions and renamed adapter to `instructions/antigravity.md`.
 
 ## [2.1.0] - 2026-04-03
 
@@ -55,9 +127,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SKILL_STANDARD.md - Quick reference with checklist and examples
 - document-skill - Automates SKILLS.md updates after skill creation
 - validate-skill - Validates skills against repository standards
-- check-waldronlab-skills - Verifies installation and lists available skills
+- check-bioconductor-skills - Verifies installation and lists available skills
 - Complete r-packages skill suite (analyze-r-package, create-package-instructions, update-package-instructions)
-- instructions/ directory with platform adapters (claude.md, copilot.md, gemini.md)
+- instructions/ directory with platform adapters (claude.md, copilot.md, antigravity.md)
 - Migration guide in SKILL_STANDARD.md for v1.x users
 
 ### Improved

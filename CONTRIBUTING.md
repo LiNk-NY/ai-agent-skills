@@ -1,6 +1,10 @@
+---
+layout: default
+title: Contributing
+nav_order: 6
+---
 # Contributing
-
-Thank you for your interest in contributing to waldronlab AI Agent Skills!
+Thank you for your interest in contributing to bioconductor AI Agent Skills!
 
 ## What You Can Contribute
 
@@ -25,7 +29,7 @@ Fix typos, clarify instructions, update outdated info - all welcome via PR.
 
 ### Issues
 
-Report bugs or suggest features via [GitHub Issues](https://github.com/waldronlab/ai-agent-skills/issues).
+Report bugs or suggest features via [GitHub Issues](https://github.com/bioconductor/ai-agent-skills/issues).
 
 ## How to Contribute
 
@@ -37,45 +41,39 @@ Report bugs or suggest features via [GitHub Issues](https://github.com/waldronla
 
 ### New Skills or Major Changes
 
-1. **Open an issue first** to discuss your proposal
-2. Get feedback from maintainers
-3. Fork and create feature branch
-4. Develop following [SKILL_STANDARD.md](SKILL_STANDARD.md)
-5. **Validate**: Run `validate-skill` to ensure standards compliance
-6. Fix any CRITICAL or WARNING issues from validation
-7. Test thoroughly (at least 3 projects)
-8. Update [SKILLS.md](SKILLS.md) using `document-skill` to include your skill
-9. Submit pull request
+1. **Open an issue first** to discuss your proposal and get feedback
+2. Fork and create a feature branch
+3. Develop following [SKILL_STANDARD.md](SKILL_STANDARD.md) (use `create-skill` for new skills)
+4. Test thoroughly (on at least 3 different projects, checking edge cases)
+5. Update [SKILLS.md](SKILLS.md) using `document-skill` to include your skill
+6. Submit pull request
 
 ## Skill Guidelines
 
 Skills must conform strictly to [AGENTS.md § Skill File Format](AGENTS.md#skill-file-format) and [SKILL_STANDARD.md](SKILL_STANDARD.md). Do not duplicate required fields or metadata definitions in your skill files.
 
-### Testing & Validation
-
-Before submitting:
-- **Run validation**: Use `validate-skill` to check standards compliance
-- Fix all CRITICAL issues and strongly consider fixing WARNING issues
-- Test on at least 3 different projects
-- Verify output accuracy
-- Check edge cases
-- Get feedback from others if possible
-
 ## Pull Request Process
 
-1. Create clear PR description explaining what and why
-2. Reference any related issues
-3. Ensure all tests pass (if applicable)
-4. Respond to review feedback
-5. Be patient - reviews typically take 2-7 days
+We use a combination of automated tools and human review to ensure high-quality skills. **Branch protection rules prevent even collaborators from committing directly to the `devel` branch**, so all changes must go through a pull request.
+
+When you submit a PR, you will receive automated feedback:
+1. **Validate Skills (CI)**: A fast deterministic script that enforces structural and metadata standards (e.g., frontmatter requirements, `SKILLS.md` synchronization).
+2. **GitHub Copilot PR Review**: Qualitative feedback on skill content, agent neutrality, and workflow structure based on repository standards.
+
+### Steps to merge
+1. Create clear PR description explaining what and why.
+2. Reference any related issues.
+3. **Resolve CI errors**: Ensure that the "Validate Skills" workflow passes.
+4. Wait for human review and respond to feedback. Be patient - reviews typically take 2-7 days.
+5. Once approved, maintainers will merge your PR.
 
 ## Questions?
 
 - **Skill creation help**: Use the `create-skill` skill
 - **Validation help**: Use the `validate-skill` skill to check if your skill meets standards
 - **Setup questions**: See [instructions/](instructions/) for your platform
-- **General questions**: [GitHub Discussions](https://github.com/waldronlab/ai-agent-skills/discussions)
-- **Bugs/features**: [GitHub Issues](https://github.com/waldronlab/ai-agent-skills/issues)
+- **General questions**: [GitHub Discussions](https://github.com/bioconductor/ai-agent-skills/discussions)
+- **Bugs/features**: [GitHub Issues](https://github.com/bioconductor/ai-agent-skills/issues)
 
 ## License
 
